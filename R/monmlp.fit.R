@@ -12,6 +12,8 @@ function(x, y, hidden1, hidden2=0, iter.max=5000, n.trials=1, n.ensemble=1,
     x.raw <- x
     y.raw <- y
     x <- scale(x.raw)
+    attr(x, "scaled:scale")[attr(x, "scaled:scale")==0] <- 1
+    x[is.nan(x)] <- 0
     if (scale.y) y <- scale(y.raw)
     cases <- 1:nrow(x)
     w.ens <- list()
