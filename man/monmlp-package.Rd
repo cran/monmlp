@@ -20,16 +20,15 @@ not invoked.
 
 MONMLP models are fit using the \code{\link{monmlp.fit}} function. 
 Predictions from a fitted model are made using the 
-\code{\link{monmlp.predict}} function. Most other functions are 
-used internally and should not need to be called directly by the 
-user.
+\code{\link{monmlp.predict}} function. The \code{\link{gam.style}}
+function can be used to investigate fitted predictor/predictand relationships.
+Most other functions are used internally and should not need to be
+called directly by the user.
 }
 \details{
 \tabular{ll}{
 Package: \tab monmlp\cr
 Type: \tab Package\cr
-Version: \tab 1.0.1\cr
-Date: \tab 2010-09-21\cr
 License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 }
@@ -37,7 +36,7 @@ LazyLoad: \tab yes\cr
 \author{
 Alex J. Cannon
 
-Maintainer: Alex J. Cannon <alex.cannon@ec.gc.ca>
+Maintainer: Alex J. Cannon <acannon@eos.ubc.ca>
 }
 \references{
 Lang, B., 2005. Monotonic multi-layer perceptron networks as 

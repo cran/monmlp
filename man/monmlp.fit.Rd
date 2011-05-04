@@ -123,5 +123,6 @@ lines(x, attr(w.mon, "y.pred"), col = "blue", lwd = 3)
 }
 
 \seealso{
-    \code{\link{monmlp.predict}}, \code{\link{monmlp.nlm}}, \code{\link{monmlp.cost}}
+    \code{\link{monmlp.predict}}, \code{\link{monmlp.nlm}}, \code{\link{monmlp.cost}},
+    \code{\link{gam.style}}
 }
