@@ -10,10 +10,8 @@ Fit a MONMLP model or an ensemble of MONMLP models using the
 and bootstrap aggregation (bagging) can be used to help avoid 
 overfitting. 
 
-The default monotonicity constraint enforced by the \code{monotone} 
-argument is for increasing behaviour. Monotonic decreases can be 
-forced by multiplying the appropriate columns of \code{x} by 
-\code{-1}.
+If invoked, the \code{monotone} argument enforces increasing behaviour
+between specified columns of \code{x} and model outputs.
 
 Note: \code{x} and \code{y} are automatically standardized prior to 
 fitting and predictions are automatically rescaled by 
