@@ -1,5 +1,7 @@
-# Default NAMESPACE created by R
-# Remove the previous line if you edit this file
-
 # Export all names
 exportPattern(".")
+importFrom(stats, runif)
+importFrom(stats, nlm)
+importFrom(graphics, abline)
+importFrom(graphics, segments)
+importFrom(grDevices, dev.new)

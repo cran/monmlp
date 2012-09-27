@@ -1,5 +1,5 @@
-f12108fd89ee6d0acdc250e3d3df1303 *DESCRIPTION
-9fdfeb11f7ddba6f3aab9aaa6b1ac5dd *NAMESPACE
+a907a77b1012052fd2dc8cb9fd77944b *DESCRIPTION
+dd633edd9aed6beeb71b7483283f798c *NAMESPACE
 025a6637f1097b911801f1d2e021d07f *R/gam.style.R
 8e2ebeec4c923d17dbe839dd1da714b3 *R/linear.R
 7822ea13000893eb97ea2767451da230 *R/linear.prime.R
@@ -18,7 +18,7 @@ f7a2428eef0ef944b605e4658db92e6a *R/tansig.prime.R
 cb2f52087aa083df089b0652812b5501 *man/linear.prime.Rd
 15ecb58a2f8c02acc78480226742d068 *man/logistic.Rd
 f5e5eb9b76131d7d9856b8c15ca6c77b *man/logistic.prime.Rd
-1cd70244d77124ef7b4dcf7609f3bb4e *man/monmlp-package.Rd
+471cce17ded99d7e27ba2a7191e8e78b *man/monmlp-package.Rd
 cdceee61905c1d07f6e478a388442079 *man/monmlp.cost.Rd
 2389afff1a76c1e14620f1e2e4f76d1d *man/monmlp.fit.Rd
 0a9efcbf95da8946f77f9e07905fb9fa *man/monmlp.initialize.Rd

@@ -3,7 +3,7 @@
 \alias{monmlp}
 \docType{package}
 \title{
-Monotone multi-layer perceptron neural network
+Monotone Multi-Layer Perceptron Neural Network
 }
 \description{
 The monmlp package implements the monotone multi-layer perceptron 
