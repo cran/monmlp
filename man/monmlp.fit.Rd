@@ -5,41 +5,41 @@
 Fit a MONMLP model or an ensemble of MONMLP models
 }
 \description{
-Fit a MONMLP model or an ensemble of MONMLP models using the 
-\code{\link{nlm}} optimization routine. Optional stopped training 
-and bootstrap aggregation (bagging) can be used to help avoid 
-overfitting. 
+Fit a MONMLP model or an ensemble of MONMLP models using the
+\code{\link{nlm}} optimization routine. Optional stopped training
+and bootstrap aggregation (bagging) can be used to help avoid
+overfitting.
 
 If invoked, the \code{monotone} argument enforces increasing behaviour
 between specified columns of \code{x} and model outputs.
 
-Note: \code{x} and \code{y} are automatically standardized prior to 
-fitting and predictions are automatically rescaled by 
-\code{\link{monmlp.predict}}. This behaviour can be suppressed for 
+Note: \code{x} and \code{y} are automatically standardized prior to
+fitting and predictions are automatically rescaled by
+\code{\link{monmlp.predict}}. This behaviour can be suppressed for
 \code{y} by the \code{scale.y} argument.
 }
 \usage{
 monmlp.fit(x, y, hidden1, hidden2 = 0, iter.max = 5000,
            n.trials = 1, n.ensemble = 1, bag = FALSE,
-           iter.stopped = NULL, scale.y = TRUE, Th = tansig,
-           To = linear, Th.prime = tansig.prime,
-           To.prime = linear.prime, monotone = NULL,
-           init.weights = c(-0.5, 0.5), max.exceptions = 10,
-           silent = FALSE, ...)
+           cases.specified = NULL, iter.stopped = NULL,
+           scale.y = TRUE, Th = tansig, To = linear,
+           Th.prime = tansig.prime, To.prime = linear.prime,
+           monotone = NULL, init.weights = c(-0.5, 0.5),
+           max.exceptions = 10, silent = FALSE, ...)
 }
 
 \arguments{
   \item{x}{
-	covariate matrix with number of rows equal to the number of samples and number of columns equal to the number of covariates.
+    covariate matrix with number of rows equal to the number of samples and number of columns equal to the number of covariates.
 }
   \item{y}{
-	predictand matrix with number of rows equal to the number of samples and number of columns equal to the number of predictands.
+    predictand matrix with number of rows equal to the number of samples and number of columns equal to the number of predictands.
 }
   \item{hidden1}{
-	number of hidden nodes in the first hidden layer.
+    number of hidden nodes in the first hidden layer.
 }
   \item{hidden2}{
-	number of hidden nodes in the second hidden layer.
+    number of hidden nodes in the second hidden layer.
 }
   \item{iter.max}{
     maximum number of iterations of the \code{\link{nlm}} optimization algorithm.
@@ -52,6 +52,9 @@ monmlp.fit(x, y, hidden1, hidden2 = 0, iter.max = 5000,
 }
   \item{bag}{
     logical variable indicating whether or not bootstrap aggregation (bagging) should be used.
+}
+  \item{cases.specified}{
+    if \code{bag = TRUE}, a list that specifies the bootstrapped cases to be used in each ensemble member.
 }
   \item{iter.stopped}{
     if \code{bag = TRUE}, specifies the number of stopped training iterations between calculation of the cost function on the out-of-bootstrap cases.
@@ -91,11 +94,15 @@ monmlp.fit(x, y, hidden1, hidden2 = 0, iter.max = 5000,
 \value{
     list containing fitted weight matrices with attributes
     including called values of \code{x}, \code{y}, \code{Th}, \code{To},
-    \code{monotone}, \code{bag}, and \code{iter.stopped}, along with
-    values of covariate/predictand column means and standard
-    deviations (\code{x.center}, \code{x.scale}, \code{y.center},
-    \code{y.scale}), out-of-bootstrap cases \code{oob}, and
-    predicted values \code{y.pred}.
+    \code{Th.prime}, \code{To.prime}, \code{monotone}, \code{bag},
+    \code{iter.max}, and \code{iter.stopped}, along with values of
+    covariate/predictand column means and standard deviations
+    (\code{x.center}, \code{x.scale}, \code{y.center},
+    \code{y.scale}), out-of-bootstrap cases \code{oob},
+    predicted values \code{y.pred}, and, if stopped training is
+    switched on, the iteration \code{iter.best} and value of
+    the cost function \code{cost.best} that minimized the
+    out-of-bootstrap validation error.
 }
 
 \examples{
