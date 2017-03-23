@@ -5,13 +5,16 @@
 Fit a MONMLP model or an ensemble of MONMLP models
 }
 \description{
-Fit a MONMLP model or an ensemble of MONMLP models using the
-\code{\link{nlm}} optimization routine. Optional stopped training
-and bootstrap aggregation (bagging) can be used to help avoid
-overfitting.
+Fit an individual model or ensemble of MONMLP regression models
+using \code{\link{optimx}} optimization routines to minimize a least
+squares cost function. Optional stopped training and bootstrap
+aggregation (bagging) can be used to help avoid overfitting.
 
 If invoked, the \code{monotone} argument enforces increasing behaviour
-between specified columns of \code{x} and model outputs.
+between specified columns of \code{x} and model outputs. In this case, the
+\code{exp} function is applied to the relevant weights following
+initialization and during optimization; manual adjustment of \code{init.weights}
+may be needed.
 
 Note: \code{x} and \code{y} are automatically standardized prior to
 fitting and predictions are automatically rescaled by
@@ -24,8 +27,9 @@ monmlp.fit(x, y, hidden1, hidden2 = 0, iter.max = 5000,
            cases.specified = NULL, iter.stopped = NULL,
            scale.y = TRUE, Th = tansig, To = linear,
            Th.prime = tansig.prime, To.prime = linear.prime,
-           monotone = NULL, init.weights = c(-0.5, 0.5),
-           max.exceptions = 10, silent = FALSE, ...)
+           monotone = NULL, init.weights = NULL,
+           max.exceptions = 10, silent = FALSE, method = "BFGS",
+           control = list(trace = 0))
 }
 
 \arguments{
@@ -42,7 +46,7 @@ monmlp.fit(x, y, hidden1, hidden2 = 0, iter.max = 5000,
     number of hidden nodes in the second hidden layer.
 }
   \item{iter.max}{
-    maximum number of iterations of the \code{\link{nlm}} optimization algorithm.
+    maximum number of iterations of the optimization algorithm.
 }
   \item{n.trials}{
     number of repeated trials used to avoid local minima.
@@ -78,16 +82,19 @@ monmlp.fit(x, y, hidden1, hidden2 = 0, iter.max = 5000,
     column indices of covariates for which the monotonicity constraint should hold.
 }
   \item{init.weights}{
-    either a vector giving the minimum and maximum allowable values of the random weights or an initial weight vector.
+    either a vector giving the minimum and maximum allowable values of the random weights, an initial weight vector, or NULL to calculate based on fan-in.
 }
   \item{max.exceptions}{
-    maximum number of exceptions of the \code{\link{nlm}} routine before fitting is terminated with an error.
+    maximum number of exceptions of the optimization routine before fitting is terminated with an error.
 }
   \item{silent}{
     logical determining if diagnostic messages should be suppressed.
 }
-  \item{\dots}{
-    additional parameters passed to the \code{\link{nlm}} optimization routine.
+  \item{method}{
+    \code{\link{optimx}} optimization method.
+}
+  \item{control}{
+    \code{list of \link{optimx}} control parameters.
 }
 }
 
@@ -110,24 +117,25 @@ set.seed(123)
 x <- as.matrix(seq(-10, 10, length = 100))
 y <- logistic(x) + rnorm(100, sd = 0.2)
 
+dev.new()
 plot(x, y)
 lines(x, logistic(x), lwd = 10, col = "gray")
 
 ## MLP w/ 2 hidden nodes
-w.mlp <- monmlp.fit(x = x, y = y, hidden1 = 2)
+w.mlp <- monmlp.fit(x = x, y = y, hidden1 = 2, iter.max = 500)
 lines(x, attr(w.mlp, "y.pred"), col = "red", lwd = 3)
 
 ## MLP w/ 2 hidden nodes and stopped training
 w.stp <- monmlp.fit(x = x, y = y, hidden1 = 2, bag = TRUE,
-                    iter.stopped = 50)
+                    iter.max = 500, iter.stopped = 10)
 lines(x, attr(w.stp, "y.pred"), col = "orange", lwd = 3)
 
 ## MONMLP w/ 2 hidden nodes
-w.mon <- monmlp.fit(x = x, y = y, hidden1 = 2, monotone = 1)
+w.mon <- monmlp.fit(x = x, y = y, hidden1 = 2, monotone = 1,
+                    iter.max = 500)
 lines(x, attr(w.mon, "y.pred"), col = "blue", lwd = 3)
 }
 
 \seealso{
-    \code{\link{monmlp.predict}}, \code{\link{monmlp.nlm}}, \code{\link{monmlp.cost}},
-    \code{\link{gam.style}}
+    \code{\link{monmlp.predict}}, \code{\link{gam.style}}
 }

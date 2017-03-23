@@ -7,23 +7,20 @@ Monotone Multi-Layer Perceptron Neural Network
 }
 \description{
 The monmlp package implements the monotone multi-layer perceptron 
-neural network (MONMLP) model following Zhang and Zhang (1999). The 
-main feature is the monotone constraint, which guarantees monotonically 
+neural network (MONMLP) regression model following Zhang and Zhang (1999).
+The  main feature is the monotone constraint, which guarantees monotonically 
 increasing behaviour of model outputs with respect to specified 
 covariates. The package also features model architectures with one or 
 two hidden layers, analytical calculation of the gradient via 
-backpropagation, optimization using the \code{\link{nlm}} routine, 
-and optional use of early stopping in conjunction with bootstrap 
-aggregation to control overfitting. The model reduces to a standard 
-multi-layer perceptron neural network if the monotone constraint is 
-not invoked.
+backpropagation, and optional use of early stopping in conjunction with
+bootstrap  aggregation to control overfitting. The model reduces to a
+standard  multi-layer perceptron neural network if the monotone constraint
+is not invoked.
 
 MONMLP models are fit using the \code{\link{monmlp.fit}} function. 
 Predictions from a fitted model are made using the 
 \code{\link{monmlp.predict}} function. The \code{\link{gam.style}}
 function can be used to investigate fitted predictor/predictand relationships.
-Most other functions are used internally and should not need to be
-called directly by the user.
 }
 \details{
 \tabular{ll}{

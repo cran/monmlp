@@ -14,8 +14,8 @@ function(x, weights, column, baseline=mean(x[,column]),
         if(!is.null(attr(p.baseline, "ensemble"))){
             p.ens.baseline <- attr(p.baseline, "ensemble")
             p.ens <- attr(p, "ensemble")
-            effs.ens <- list()
-            for(i in 1:length(p.ens.baseline)){
+            effs.ens <- vector("list", length(p.ens.baseline))
+            for(i in seq(length(p.ens.baseline))){
                 effs.ens[[i]] <- p.ens[[i]] - p.ens.baseline[[i]]
             }
         attr(effs, "ensemble") <- effs.ens
@@ -34,8 +34,8 @@ function(x, weights, column, baseline=mean(x[,column]),
         if(!is.null(attr(p.plus, "ensemble"))){
             p.ens.plus <- attr(p.plus, "ensemble")
             p.ens.minus <- attr(p.minus, "ensemble")
-            pds.ens <- list()
-            for(i in 1:length(p.ens.plus)){
+            pds.ens <- vector("list", length(p.ens.plus))
+            for(i in seq(length(p.ens.plus))) {
                 pds.ens[[i]] <- (p.ens.plus[[i]] - p.ens.minus[[i]])/(2*epsilon)
             }
         attr(pds, "ensemble") <- pds.ens
@@ -47,10 +47,10 @@ function(x, weights, column, baseline=mean(x[,column]),
     if(plot){
         x.var <- x[,column]
         if(is.null(colnames(x)))
-            colnames(x) <- paste("x", 1:ncol(x), sep="")
+            colnames(x) <- paste("x", seq(ncol(x)), sep="")
         xlab <- colnames(x)[column]
         if(length(seg.cols)==1) seg.cols <- rep(seg.cols, length(x.var))
-        for(predictand in 1:ncol(effects)){
+        for(predictand in seq(ncol(effects))) {
             ylab <- paste("Effects: predictand", predictand)
             theta <- atan(partials[,predictand])
             ymin <- min(effects[,predictand])

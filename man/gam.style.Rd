@@ -71,9 +71,10 @@ x <- matrix(runif(350*6), ncol=6)
 y <- as.matrix(5*sin(10*x[,1]*x[,2]) + 20*(x[,3]-0.5)^2 -
                10*x[,4] + 20*x[,5]*x[,6])
 
-w <- monmlp.fit(x = x, y = y, hidden1 = 4, n.trials = 1)
+w <- monmlp.fit(x = x, y = y, hidden1 = 4, n.trials = 1,
+                iter.max = 500)
 
-for (i in 1:ncol(x)) gam.style(x, weights = w, column = i)
+for (i in seq(ncol(x))) gam.style(x, weights = w, column = i)
 }
 \references{
     Cannon, A.J. and I.G. McKendry, 2002. A graphical sensitivity analysis

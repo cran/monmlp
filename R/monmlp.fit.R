@@ -2,8 +2,8 @@ monmlp.fit <-
 function(x, y, hidden1, hidden2=0, iter.max=5000, n.trials=1, n.ensemble=1,
          bag=FALSE, cases.specified=NULL, iter.stopped=NULL, scale.y=TRUE,
          Th=tansig, To=linear, Th.prime=tansig.prime, To.prime=linear.prime,
-         monotone=NULL, init.weights=c(-0.5, 0.5), max.exceptions=10,
-         silent=FALSE, ...)
+         monotone=NULL, init.weights=NULL, max.exceptions=10,
+         silent=FALSE, method='BFGS', control=list(trace=0))
 {
     if (!is.matrix(x)) stop("\"x\" must be a matrix")
     if (!is.matrix(y)) stop("\"y\" must be a matrix")
@@ -18,10 +18,10 @@ function(x, y, hidden1, hidden2=0, iter.max=5000, n.trials=1, n.ensemble=1,
     attr(x, "scaled:scale")[attr(x, "scaled:scale")==0] <- 1
     x[is.nan(x)] <- 0
     if (scale.y) y <- scale(y.raw)
-    cases <- 1:nrow(x)
+    cases <- seq(nrow(x))
     oob <- NULL
-    w.ens <- list()
-    for (ens in 1:n.ensemble){
+    w.ens <- vector("list", n.ensemble)
+    for (ens in seq(n.ensemble)){
         if (!silent) cat("** Ensemble", ens, "\n")
         if (bag){
             if (is.null(cases.specified)){
@@ -29,7 +29,7 @@ function(x, y, hidden1, hidden2=0, iter.max=5000, n.trials=1, n.ensemble=1,
             } else{
                 cases <- cases.specified[[ens]]
             }
-            oob <- which(!(1:nrow(x) %in% cases))
+            oob <- which(!(seq(nrow(x)) %in% cases))
             if (!silent) cat("** Bagging on\n")
         }
         if (bag & !is.null(iter.stopped)){
@@ -53,7 +53,8 @@ function(x, y, hidden1, hidden2=0, iter.max=5000, n.trials=1, n.ensemble=1,
                                       To.prime=To.prime, monotone=monotone,
                                       init.weights=weights,
                                       max.exceptions=max.exceptions,
-                                      silent=silent, ...)
+                                      silent=silent, method=method,
+                                      control=control)
                 weights <- fit.ens$weights
                 code <- fit.ens$code
                 w <- list(monmlp.reshape(x=x, y=y, weights=weights,
@@ -73,7 +74,7 @@ function(x, y, hidden1, hidden2=0, iter.max=5000, n.trials=1, n.ensemble=1,
                     cost.best <- cost
                     iter.best <- iter
                 }
-                if (code <= 2) break
+                if (code == 0) break
             }
             if (!silent) cat("**", iter.best, cost.best, "\n\n")
             w <- monmlp.reshape(x=x, y=y, weights=weights.best, hidden1=hidden1,
@@ -89,7 +90,7 @@ function(x, y, hidden1, hidden2=0, iter.max=5000, n.trials=1, n.ensemble=1,
                                   To=To, Th.prime=Th.prime, To.prime=To.prime,
                                   monotone=monotone, init.weights=init.weights,
                                   max.exceptions=max.exceptions,
-                                  silent=silent, ...)
+                                  silent=silent, method=method, control=control)
             weights <- fit.ens$weights
             cost <- fit.ens$cost
             if (!silent) cat("**", cost, "\n\n")

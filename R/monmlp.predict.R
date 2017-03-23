@@ -12,7 +12,7 @@ function(x, weights)
     x <- sweep(x, 2, x.center, "-")
     x <- sweep(x, 2, x.scale, "/")
     x <- cbind(x, 1)
-    y.ens <- list()
+    y.ens <- vector("list", length(weights))
     for (ens in seq_along(weights)){
         W1 <- weights[[ens]]$W1
         W2 <- weights[[ens]]$W2
