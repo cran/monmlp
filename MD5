@@ -1,4 +1,4 @@
-b91f2d8a16f286027e25be8911c15977 *DESCRIPTION
+06c59427b1512773011fbab1cd7d105f *DESCRIPTION
 c65dd804d92c259ff0d4c157639c2770 *NAMESPACE
 86e3a23b625ccf4900fc36e96999a9be *R/gam.style.R
 8e2ebeec4c923d17dbe839dd1da714b3 *R/linear.R
@@ -14,13 +14,13 @@ bf6a20cabb64e7456d018191a1cdef13 *R/monmlp.predict.R
 d1f6e75ea47f182ac242c203a2826a51 *R/monmlp.reshape.R
 f244d66c60b4db8cde6065a8020c29ae *R/tansig.R
 f7a2428eef0ef944b605e4658db92e6a *R/tansig.prime.R
-6c2c37085a1fa05330d84db06785cafb *man/gam.style.Rd
-484e69f882125570276b07b3bfc0cc4c *man/linear.Rd
+438f32c98862abe768a24607d51576ae *man/gam.style.Rd
+5d69930e8fadb167acc317141b7662dc *man/linear.Rd
 cb2f52087aa083df089b0652812b5501 *man/linear.prime.Rd
-15ecb58a2f8c02acc78480226742d068 *man/logistic.Rd
+d8f8abfd386d1638dffe5c9d30427f0c *man/logistic.Rd
 f5e5eb9b76131d7d9856b8c15ca6c77b *man/logistic.prime.Rd
-0a6fdb08ae185dd4698a77271e7dcc78 *man/monmlp-package.Rd
-2521181374b8155a68d985d5f44bd056 *man/monmlp.fit.Rd
-d1c14c4c27768cf4da219346d762df91 *man/monmlp.predict.Rd
-7c3ce5ea7ec2f3f83d83226f113988d0 *man/tansig.Rd
+8586a12f9dfa7e7ed0d3382bbd63dd0b *man/monmlp-package.Rd
+496d042dc42ac1b16afc15cc9e4062b0 *man/monmlp.fit.Rd
+3099947228450e7ecd4f0541f6461a7f *man/monmlp.predict.Rd
+68ff6e249f1182f035e7db4ba0d48e3c *man/tansig.Rd
 e2aac6706e9d76ec946e75247b75bfc7 *man/tansig.prime.Rd

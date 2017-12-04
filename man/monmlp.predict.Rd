@@ -2,10 +2,10 @@
 \alias{monmlp.predict}
 
 \title{
-Make predictions from a fitted MONMLP model
+Make predictions from a fitted MLP or MONMLP model
 }
 \description{
-Make predictions from a fitted MONMLP model or ensemble of MONMLP models.
+Make predictions from a fitted model or ensemble of MLP or MONMLP models.
 }
 \usage{
 monmlp.predict(x, weights)
@@ -16,11 +16,11 @@ monmlp.predict(x, weights)
 	covariate matrix with number of rows equal to the number of samples and number of columns equal to the number of covariates.
 }
   \item{weights}{
-	list containing MONMLP weight matrices and other parameters from \code{\link{monmlp.fit}}.
+	list containing weight matrices and other parameters from \code{\link{monmlp.fit}}.
 }
 }
 \value{
-	a matrix with number of rows equal to the number of samples and number of columns equal to the number of predictand variables. If \code{weights} is from an ensemble of models, the matrix is the ensemble mean and the attribute \code{ensemble} contains a list with predictions for each ensemble member.
+	a matrix with number of rows equal to the number of samples and number of columns equal to the number of response variables. If \code{weights} is from an ensemble of models, the matrix is the ensemble mean and the attribute \code{ensemble} contains a list with predictions for each ensemble member.
 }
 
 \examples{

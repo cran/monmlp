@@ -1,11 +1,11 @@
 \name{gam.style}
 \alias{gam.style}
 \title{
-GAM-style effects plots for interpreting MONMLP models
+GAM-style effects plots for interpreting MLP and MONMLP models
 }
 \description{
 GAM-style effects plots provide a graphical means of interpreting
-fitted MONMLP predictor/predictor relationships. From Plate et al. (2000):
+fitted covariate/response relationships. From Plate et al. (2000):
 The effect of the \code{i}th input variable at a particular input point 
 \code{Delta.i.x} is the change in \code{f} resulting from changing \code{X1}
 to \code{x1} from \code{b1} (the baseline value [...]) while keeping the
@@ -27,7 +27,7 @@ gam.style(x, weights, column, baseline = mean(x[,column]),
 }
 \arguments{
   \item{x}{
-      matrix with number of rows equal to the number of samples and number of columns equal to the number of predictor variables.
+      matrix with number of rows equal to the number of samples and number of columns equal to the number of covariate variables.
 }
   \item{weights}{
       list returned by \code{\link{monmlp.fit}}.
@@ -36,7 +36,7 @@ gam.style(x, weights, column, baseline = mean(x[,column]),
       column of \code{x} for which effects plots should be returned.
 }
   \item{baseline}{
-      value of \code{x[,column]} to be used as the baseline for calculation of predictor effects; defaults to \code{mean(x[,column])}.
+      value of \code{x[,column]} to be used as the baseline for calculation of covariate effects; defaults to \code{mean(x[,column])}.
 }
   \item{epsilon}{
       step-size used in the finite difference calculation of the partial derivatives.
@@ -48,10 +48,10 @@ gam.style(x, weights, column, baseline = mean(x[,column]),
       colors of effects line segments.
 }
   \item{plot}{
-      if \code{TRUE} (the default) then an effects plots for each predictand variable is produced.
+      if \code{TRUE} (the default) then an effects plots for each response variable is produced.
 }
   \item{return.results}{
-      if \code{TRUE} then values of effects and partial derivatives for each predictand variable are returned.
+      if \code{TRUE} then values of effects and partial derivatives for each response variable are returned.
 }
   \item{\dots}{
       further arguments to be passed to \code{plot}.
@@ -62,8 +62,8 @@ gam.style(x, weights, column, baseline = mean(x[,column]),
 }
 \value{
 A list with elements:
-  \item{effects}{a matrix of predictor effects.}
-  \item{partials}{a matrix of predictor partial derivatives.}
+  \item{effects}{a matrix of covariate effects.}
+  \item{partials}{a matrix of covariate partial derivatives.}
 }
 \examples{
 set.seed(1)

@@ -2,10 +2,10 @@
 \alias{monmlp.fit}
 
 \title{
-Fit a MONMLP model or an ensemble of MONMLP models
+Fit one or more MLP or MONMLP models
 }
 \description{
-Fit an individual model or ensemble of MONMLP regression models
+Fit an individual model or ensemble of MLP or MONMLP regression models
 using \code{\link{optimx}} optimization routines to minimize a least
 squares cost function. Optional stopped training and bootstrap
 aggregation (bagging) can be used to help avoid overfitting.
@@ -37,7 +37,7 @@ monmlp.fit(x, y, hidden1, hidden2 = 0, iter.max = 5000,
     covariate matrix with number of rows equal to the number of samples and number of columns equal to the number of covariates.
 }
   \item{y}{
-    predictand matrix with number of rows equal to the number of samples and number of columns equal to the number of predictands.
+    response matrix with number of rows equal to the number of samples and number of columns equal to the number of response variables.
 }
   \item{hidden1}{
     number of hidden nodes in the first hidden layer.
@@ -64,7 +64,7 @@ monmlp.fit(x, y, hidden1, hidden2 = 0, iter.max = 5000,
     if \code{bag = TRUE}, specifies the number of stopped training iterations between calculation of the cost function on the out-of-bootstrap cases.
 }
   \item{scale.y}{
-    logical determining if columns of the predictand matrix should be scaled to zero mean and unit variance prior to fitting. Set this to \code{FALSE} if using an output layer transfer function that limits the range of predictions.
+    logical determining if columns of the response matrix should be scaled to zero mean and unit variance prior to fitting. Set this to \code{FALSE} if using an output layer transfer function that limits the range of predictions.
 }
   \item{Th}{
     hidden layer transfer function.
@@ -103,7 +103,7 @@ monmlp.fit(x, y, hidden1, hidden2 = 0, iter.max = 5000,
     including called values of \code{x}, \code{y}, \code{Th}, \code{To},
     \code{Th.prime}, \code{To.prime}, \code{monotone}, \code{bag},
     \code{iter.max}, and \code{iter.stopped}, along with values of
-    covariate/predictand column means and standard deviations
+    covariate/response column means and standard deviations
     (\code{x.center}, \code{x.scale}, \code{y.center},
     \code{y.scale}), out-of-bootstrap cases \code{oob},
     predicted values \code{y.pred}, and, if stopped training is

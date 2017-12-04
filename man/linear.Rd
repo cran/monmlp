@@ -4,7 +4,7 @@
 Identity function
 }
 \description{
-Computes a trivial identity function. Used as the hidden layer transfer function for linear MONMLP models.
+Computes a trivial identity function. Used as the hidden layer transfer function for linear MLP or MONMLP models.
 }
 \usage{
 linear(x)

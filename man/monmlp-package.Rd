@@ -6,21 +6,44 @@
 Monotone Multi-Layer Perceptron Neural Network
 }
 \description{
-The monmlp package implements the monotone multi-layer perceptron 
-neural network (MONMLP) regression model following Zhang and Zhang (1999).
-The  main feature is the monotone constraint, which guarantees monotonically 
-increasing behaviour of model outputs with respect to specified 
-covariates. The package also features model architectures with one or 
-two hidden layers, analytical calculation of the gradient via 
-backpropagation, and optional use of early stopping in conjunction with
-bootstrap  aggregation to control overfitting. The model reduces to a
-standard  multi-layer perceptron neural network if the monotone constraint
-is not invoked.
+The monmlp package implements one and two hidden-layer multi-layer
+perceptron neural network (MLP) models. An optional monotone constraint,
+which guarantees monotonically increasing behaviour
+of model outputs with respect to specified covariates, can be added
+to the MLP. The resulting monotone MLP (MONMLP) regression model
+is based on Zhang and Zhang (1999).
 
-MONMLP models are fit using the \code{\link{monmlp.fit}} function. 
+Early stopping can be combined with bootstrap aggregation to
+control overfitting. The model reduces to a standard  MLP
+neural network if the monotone constraint is not invoked.
+
+MLP and MONMLP models are fit using the \code{\link{monmlp.fit}} function. 
 Predictions from a fitted model are made using the 
 \code{\link{monmlp.predict}} function. The \code{\link{gam.style}}
-function can be used to investigate fitted predictor/predictand relationships.
+function can be used to investigate fitted covariate/response relationships.
+}
+\examples{
+set.seed(123)
+x <- as.matrix(seq(-10, 10, length = 100))
+y <- logistic(x) + rnorm(100, sd = 0.2)
+
+dev.new()
+plot(x, y)
+lines(x, logistic(x), lwd = 10, col = "gray")
+
+## MLP w/ 2 hidden nodes
+w.mlp <- monmlp.fit(x = x, y = y, hidden1 = 2, iter.max = 500)
+lines(x, attr(w.mlp, "y.pred"), col = "red", lwd = 3)
+
+## MLP w/ 2 hidden-layers (2 nodes each) and early stopping
+w.stp <- monmlp.fit(x = x, y = y, hidden1 = 2, hidden2 = 2,
+                    bag = TRUE, iter.max = 500, iter.stopped = 10)
+lines(x, attr(w.stp, "y.pred"), col = "orange", lwd = 3)
+
+## MONMLP w/ 2 hidden nodes
+w.mon <- monmlp.fit(x = x, y = y, hidden1 = 2, monotone = 1,
+                    iter.max = 500)
+lines(x, attr(w.mon, "y.pred"), col = "blue", lwd = 3)
 }
 \details{
 \tabular{ll}{
@@ -30,11 +53,7 @@ License: \tab GPL-2\cr
 LazyLoad: \tab yes\cr
 }
 }
-\author{
-Alex J. Cannon
 
-Maintainer: Alex J. Cannon <acannon@eos.ubc.ca>
-}
 \references{
 Lang, B., 2005. Monotonic multi-layer perceptron networks as 
 universal approximators. In: W. Duch et al. (eds.): ICANN 2005, 

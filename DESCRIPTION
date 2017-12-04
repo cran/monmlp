@@ -1,7 +1,8 @@
 Package: monmlp
 Type: Package
-Title: Monotone Multi-Layer Perceptron Neural Network
-Version: 1.1.4
+Title: Multi-Layer Perceptron Neural Network with Optional Monotonicity
+        Constraints
+Version: 1.1.5
 Author: Alex J. Cannon
 Maintainer: Alex J. Cannon <alex.cannon@canada.ca>
 Description: Train and make predictions from a multi-layer perceptron neural
@@ -11,5 +12,5 @@ LazyLoad: yes
 Depends: optimx
 Repository: CRAN
 NeedsCompilation: no
-Packaged: 2017-03-22 23:06:30 UTC; ECPACIFIC+cannona
-Date/Publication: 2017-03-23 21:05:06 UTC
+Packaged: 2017-12-04 22:55:46 UTC; ECPACIFIC+cannona
+Date/Publication: 2017-12-05 00:05:01 UTC

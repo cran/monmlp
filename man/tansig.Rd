@@ -4,7 +4,7 @@
 Hyperbolic tangent sigmoid function
 }
 \description{
-Computes the hyperbolic tangent sigmoid function. Used as a hidden layer transfer function for nonlinear MONMLP models.
+Computes the hyperbolic tangent sigmoid function. Used as a hidden layer transfer function for nonlinear MLP or MONMLP models.
 }
 \usage{
 tansig(x)
