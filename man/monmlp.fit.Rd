@@ -6,7 +6,7 @@ Fit one or more MLP or MONMLP models
 }
 \description{
 Fit an individual model or ensemble of MLP or MONMLP regression models
-using \code{\link{optimx}} optimization routines to minimize a least
+using \code{\link[optimx]{optimx}} optimization routines to minimize a least
 squares cost function. Optional stopped training and bootstrap
 aggregation (bagging) can be used to help avoid overfitting.
 
@@ -91,10 +91,10 @@ monmlp.fit(x, y, hidden1, hidden2 = 0, iter.max = 5000,
     logical determining if diagnostic messages should be suppressed.
 }
   \item{method}{
-    \code{\link{optimx}} optimization method.
+    \code{\link[optimx]{optimx}} optimization method.
 }
   \item{control}{
-    \code{list of \link{optimx}} control parameters.
+    \code{list of \link[optimx]{optimx}} control parameters.
 }
 }
 
